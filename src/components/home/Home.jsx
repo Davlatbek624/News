@@ -34,7 +34,7 @@ export default function NewsSection() {
                         <input
                             type="text"
                             placeholder="Searching..."
-                            className="w-full p-2 border-2 border-gray-200 text-2xl outline-none focus:border-[#109BE9] font-light"
+                            className="w-full  p-2 border-2 border-gray-200 text-2xl outline-none focus:border-[#109BE9] font-light"
                         />
                     </div>
 

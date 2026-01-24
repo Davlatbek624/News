@@ -4,7 +4,7 @@ import Entertointment from '../components/Entertointment'
 export default function EntoirentmentPage() {
     return (
         <>
-            <Entertointment />
+            <Entertointment  />
         </>
     )
 }

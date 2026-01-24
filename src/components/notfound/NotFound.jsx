@@ -15,7 +15,7 @@ export default function NotFound() {
         </h2>
         
         <p className="text-gray-600 mb-10 leading-relaxed">
-            Oops! The page you are looking for might have been removed, 
+            Oops! The page you are  looking for might have been removed, 
             had its name changed, or is temporarily unavailable. 
             Please check the URL or return to the homepage.
         </p>

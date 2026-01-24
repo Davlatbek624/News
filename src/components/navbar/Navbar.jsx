@@ -10,7 +10,7 @@ export default function Navbar() {
                 <div className="container max-w-7xl flex items-center justify-between px-5 mx-auto">
                     <div className="flex gap-7.5 items-center justify-center">
                         <NavLink to="/" className={({ isActive }) => `${isActive ? "text-red-600  " : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[]:hidden text-gray-50 text-[18px]`}>Home</NavLink>
-                        <NavLink to="/Business" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[250px]:hidden text-gray-50 text-[18px]`}>Business</NavLink>
+                        <NavLink to="/Business"  className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[250px]:hidden text-gray-50 text-[18px]`}>Business</NavLink>
                         <NavLink to="/Entertainment" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[400px]:hidden text-gray-50 text-[18px]`}>Entertainment</NavLink>
                         <NavLink to="/General" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[450px]:hidden text-gray-50 text-[18px]`}>General</NavLink>
                         <NavLink to="/Health" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[550px]:hidden text-gray-50 text-[18px]`}>Health</NavLink>

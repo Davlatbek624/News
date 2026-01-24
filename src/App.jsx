@@ -27,7 +27,7 @@ export default function App() {
       <Suspense fallback={<> <div class="flex flex-col items-center justify-center mt-28 mb-28 ">
         <div class="h-12 w-12 animate-spin rounded-full mb-7 border-4 border-solid border-blue-500 border-t-transparent">
         </div>
-        <span class="text-2xl text-blue-600 ">Loading...</span>
+        <span class="text-2xl  text-blue-600 ">Loading...</span>
       </div>
       </>}>
 

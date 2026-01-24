@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Entertointment() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-sans">
+    <div className="flex  flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-sans">
             <div className="text-center max-w-md">
 
                 <h2 className="text-3xl md:text-4xl font-bold text-blue-500 mb-4">

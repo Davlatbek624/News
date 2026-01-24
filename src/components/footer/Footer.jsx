@@ -11,7 +11,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-4">
                         <h2 className="text-2xl font-bold">DAVLATBEK</h2>
                         <p className="text-blue-100 text-sm leading-relaxed">
-                            Professional web developer focused on creating clean and user-friendly experiences.
+                            Professional web developer focused on creating  clean and user-friendly experiences.
                             Available for new projects and collaborations.
                         </p>
                     </div>
