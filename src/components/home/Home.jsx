@@ -1,90 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 
 export default function Home() {
-    const [data, setData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("apple"); 
-
-    const fetchNews = (query) => {
-        const today = new Date().toISOString().split('T')[0];
-        
-        fetch(`https://newsapi.org/v2/everything?q=${query}&from=${today}&sortBy=popularity&apiKey=ca5341aad4da4a4d8947d21b0c750a09`)
-            .then(res => res.json())
-            .then(obj => {
-                setData(obj.articles || []);
-            })
-            .catch(err => console.log("Xato yuz berdi:", err));
-    };
-
+    const [data, setData] = useState(null)
+    const apikey = "ca5341aad4da4a4d8947d21b0c750a09"
+    const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apikey}`
+    const getData = () => {
+        axios.get(apiUrl).then(res => {
+            setData(res.data.articles)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            fetchNews(searchTerm);
-        }, 500); 
-
-        return () => clearTimeout(delayDebounceFn);
-    }, [searchTerm]);
-
+        getData()
+    }, [])
     return (
-        <div className="min-h-screen bg-white flex flex-col items-center p-6">
-            <div className="w-full max-w-7xl">
-                
-                <input
-                    type="text"
-                    placeholder="Xohlagan mavzuni yozing (masalan: Tesla)..."
-                    value={searchTerm === "apple" ? "" : searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value || "apple")}
-                    className="w-full p-3 border-2 border-gray-200 mb-8 outline-none focus:border-[#109BE9] text-xl font-light"
-                />
-
-                {data.length > 0 ? (
-                    <Swiper
-                        modules={[Pagination, Navigation]}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        pagination={{ clickable: true }}
-                        navigation={true}
-                        className="pb-12"
-                    >
-                        {Array.from({ length: Math.ceil(data.length / 8) }).map((_, i) => (
-                            <SwiperSlide key={i}>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                    {data.slice(i * 8, (i + 1) * 8).map((news, idx) => (
-                                        <div key={idx} className="cursor-pointer group flex flex-col">
-                                            <div className="aspect-square bg-gray-100 mb-3 overflow-hidden relative">
-                                                <img 
-                                                    src={news.urlToImage || "https://via.placeholder.com/400x400?text=No+Image"} 
-                                                    className="w-full h-full object-cover group-hover:scale-105 duration-500" 
-                                                    alt="" 
-                                                />
-                                                <span className="absolute bottom-0 left-0 bg-white px-2 py-1 text-[9px] font-bold uppercase text-gray-400 border-t border-r border-gray-100">
-                                                    {news.source?.name?.split('.')[0]}
-                                                </span>
-                                            </div>
-                                            <h3 className="font-bold text-sm leading-tight line-clamp-3 mb-2 group-hover:text-[#109BE9]">
-                                                {news.title}
-                                            </h3>
-                                            <div className="mt-auto flex items-center gap-2 text-[10px] text-gray-400">
-                                                <span className="truncate">{news.author || "Staff"}</span>
-                                                <span>•</span>
-                                                <span>{new Date(news.publishedAt).toLocaleDateString()}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                ) : (
-                    <div className="text-center py-20 text-gray-400 italic">
-                        Ma'lumot topilmadi yoki yuklanmoqda...
+        <div>
+            {data && data.map((item, index) => (
+                <div key={item.url || index} className="max-w-4xl mx-auto my-8 p-6 border border-gray-300 rounded-lg shadow-md">
+                    <div className="w-full">            
+                        {item.urlToImage && <img src={item.urlToImage} alt={item.title} className="w-full h-64 object-cover rounded mb-4" />}
+                        <h2 className="text-2xl font-bold mb-2">{item.title}</h2>
+                        <p className="text-gray-700 mb-2">{item.description}</p>
+                        <span className="text-sm text-gray-500">{item.author} | {new Date(item.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
                     </div>
-                )}
-            </div>
+                </div>
+            ))}
         </div>
-    );
+    )
 }
