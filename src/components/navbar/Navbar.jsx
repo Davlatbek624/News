@@ -1,59 +1,75 @@
+
 import React, { useState } from 'react';
-import { LuMenu } from 'react-icons/lu';
+import logo from '../../assets/logo.svg'
+import i18n from '../../../i18n.js'
+import { changeLanguage } from 'i18next';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    return (
-        <><hr className='mb-20'/>
-            <nav className='py-6 bg-[#109BE9] fixed z-50 top-0 left-0 w-full shadow '>
-                <div className="container max-w-7xl  flex items-center justify-between px-5 mx-auto">
-                    <div className="flex gap-7.5 items-center justify-center">
-                        <NavLink to="/" className={({ isActive }) => `${isActive ? "text-red-600  " : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[]:hidden text-gray-50 text-[18px]`}>Home</NavLink>
-                        <NavLink to="/Business"  className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[250px]:hidden text-gray-50 text-[18px]`}>Business</NavLink>
-                        <NavLink to="/Entertainment" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[400px]:hidden text-gray-50 text-[18px]`}>Entertainment</NavLink>
-                        <NavLink to="/General" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[450px]:hidden text-gray-50 text-[18px]`}>General</NavLink>
-                        <NavLink to="/Health" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[550px]:hidden text-gray-50 text-[18px]`}>Health</NavLink>
-                        <NavLink to="/Science" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[650px]:hidden text-gray-50 text-[18px]`}>Science</NavLink>
-                        <NavLink to="/Sports" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[720px]:hidden text-gray-50 text-[18px]`}>Sports</NavLink>
-                        <NavLink to="/Technology" className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-200 "}  duration-300  max-[800px]:hidden text-gray-50 text-[18px]`}>Technology</NavLink>
-                    </div>
-                    <button
-                        onClick={() => setMobileMenuOpen(true)}
-                        className="text-white text-3xl md:hidden"
-                    >
-                        <LuMenu />
-                    </button>
+  const { t, i18n } = useTranslation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-                    {mobileMenuOpen && (
-                        <>
-                            <div
-                                className="fixed inset-0 bg-black/70 z-40"
-                                onClick={() => setMobileMenuOpen(false)}
-                            ></div>
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
 
-                            <div className="fixed left-0 top-0 h-full w-64 bg-blue-400 z-50 p-6 flex flex-col gap-5 shadow-2xl">
-                                <h2 className="font-bold text-xl border-b pb-2">Menu</h2>
+  return (
+    <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto px-5 flex justify-between items-center py-3">
+        <img className="w-28" src={logo} alt="logo" />
 
-                                <NavLink to="/" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Home</NavLink>
-                                <NavLink to="/Entertainment"  onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Entertainment</NavLink>
-                                <NavLink to="/Business" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Business</NavLink>
-                                <NavLink to="/General" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>General</NavLink>
-                                <NavLink to="/Health" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Health</NavLink>
-                                <NavLink to="/Science" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Science</NavLink>
-                                <NavLink to="/Sports" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Sports</NavLink>
-                                <NavLink to="/Technology" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `${isActive ? "text-red-600" : " hover:scale-105 hover:text-gray-700 "}  duration-300 text-black text-[18px]`}>Technology</NavLink>
-                                <button
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="mt-auto bg-red-500 text-white p-2 rounded"
-                                >
-                                    Close
-                                </button>
-                            </div>
-                        </>
-                    )}
-                </div>
-            </nav>
+        <div className="hidden md:flex gap-4">
+          <NavLink to="/home" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('mahsulot')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/sertifikat" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('sertifikat')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/jamoa" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('jamoa')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/haqimizda" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('haqimizda')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/yangiliklar" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('yangilik')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/bosh-orinlar" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('bosh-orinlar')}</NavLink>
+          <div className="w-px h-7 border border-[#00103D1F] lg:block hidden"></div>
+          <NavLink to="/" className={({ isActive }) => `${isActive ? "text-[#EF7C00] underline! " : ""} text-[#2C2D2E] max-[850px]:hidden duration-300 font-medium text-[16px] font-montserrat no-underline`}>{t('boglanish')}</NavLink>
+        </div>
+
+        <select
+          className="border border-gray-300 rounded-md px-2 py-1"
+          onChange={changeLanguage}
+        >
+          <option onClick={() => changeLanguage('uz')} className="language-item" value="uz">UZ</option>
+          <option onClick={() => changeLanguage('ru')} className="language-item" value="ru">RU</option>
+          <option onClick={() => changeLanguage('en')} className="language-item" value="en">EN</option>
+        </select>
+
+        <button
+          className="md:hidden text-3xl font-bold ml-4"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          ≡
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/70 z-40"
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+          <div className="fixed left-0 top-0 h-full w-64 bg-orange-400 z-50 p-6 flex flex-col gap-5 shadow-2xl">
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/home" onClick={() => setMobileMenuOpen(false)}>{t('mahsulot')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/sertifikat" onClick={() => setMobileMenuOpen(false)}>{t('sertifikat')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/jamoa" onClick={() => setMobileMenuOpen(false)}>{t('jamoa')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/haqimizda" onClick={() => setMobileMenuOpen(false)}>{t('haqimizda')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/yangiliklar" onClick={() => setMobileMenuOpen(false)}>{t('yangilik')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 py-2 hover:bg-orange-500 hover:text-white ' to="/bosh-orinlar" onClick={() => setMobileMenuOpen(false)}>{t('bosh-orinlar')}</NavLink>
+            <NavLink className='text-white bg-orange-400 duration-300 px-6 pt-2 hover:bg-orange-500 hover:text-white pb-4 ' to="/" onClick={() => setMobileMenuOpen(false)}>{t('boglanish')}</NavLink>
+          </div>
         </>
-    );
+      )}
+    </nav>
+  );
 }
+

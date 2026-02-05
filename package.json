@@ -1,5 +1,5 @@
 {
-  "name": "fetch-react",
+  "name": "learn-group",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "axios": "^1.13.3",
+    "i18next": "^25.7.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.3",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.13.0",
+    "react-router-dom": "^7.12.0",
+    "react-slick": "^0.31.0",
+    "react-toastify": "^11.0.5",
+    "slick-carousel": "^1.8.1",
     "swiper": "^12.0.3",
     "tailwindcss": "^4.1.18"
   },

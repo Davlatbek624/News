@@ -1,55 +1,89 @@
-import React from 'react';
-import { FaTelegramPlane, FaInstagram, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import logo2 from '../../assets/logo 2.svg'
+import fb from '../../assets/fb.svg'
+import vk from '../../assets/vk.svg'
+import ln from '../../assets/linkedin.svg'
 
-export default function Footer() {
-    return (
-        <footer className="bg-[#109BE9] text-white mt-auto">
-            <div className="container max-w-7xl mx-auto px-5 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-                    <div className="flex flex-col gap-4">
-                        <h2 className="text-2xl font-bold">DAVLATBEK</h2>
-                        <p className="text-blue-100 text-sm leading-relaxed">
-                            Professional web developer focused on creating  clean and user-friendly experiences.
-                            Available for new projects and collaborations.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                        <h3 className="text-lg font-bold border-b border-white/20 pb-2 w-max">Quick Links</h3>
-                        <div className="flex flex-col gap-2">
-                            <NavLink to="/" className="hover:translate-x-2 duration-300 text-blue-50">Home</NavLink>
-                            <NavLink to="/Business" className="hover:translate-x-2 duration-300 text-blue-50">Business</NavLink>
-                            <NavLink to="/Technology" className="hover:translate-x-2 duration-300 text-blue-50">Technology</NavLink>
-                            <NavLink to="/Science" className="hover:translate-x-2 duration-300 text-blue-50">Science</NavLink>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                        <h3 className="text-lg font-bold border-b border-white/20 pb-2 w-max">Contact Me</h3>
-                        <div className="flex flex-col gap-4 text-blue-50">
-                            <div className="flex items-center gap-3">
-                                <FaPhoneAlt className="text-blue-200" />
-                                <a href="tel:+998919102160" className="hover:text-white duration-300">+998 91 910 21 60</a>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <FaMapMarkerAlt className="text-blue-200" />
-                                <span>Termez City, Uzbekistan</span>
-                            </div>
-                        <div className="flex gap-4 mt-2">
-                            <a href="https://t.me/davlatbek_624" target="_blank" className="hover:scale-110 duration-300 bg-white/20 p-2 rounded-full"><FaTelegramPlane size={20} /></a>
-                            <a href="https://instagram.com/Dastro_pm" target="_blank" className="hover:scale-110 duration-300 bg-white/20 p-2 rounded-full"><FaInstagram size={20} /></a>
-                        </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="border-t border-white/10 mt-12 pt-6 text-center text-sm text-blue-100">
-                    <p>© {new Date().getFullYear()} Davlatbek. All rights reserved. Created with ❤️ in Termez.</p>
-                </div>
+const Footer = () => {
+  const { t } = useTranslation();
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+  return (
+    <footer className="w-full bg-[#f5f6fa] pt-8 pb-4">
+      <div className="max-w-7xl mx-auto px-5">
+        <div className="w-full flex justify-between items-center mb-2.5 gap-4">
+          <img src={logo2} alt="Логотип" className="h-10" />
+          <div className="flex items-center space-x-6">
+            <img className='w-8 h-5' src={vk} alt="VK" />
+            <img className='w-5 h-8' src={fb} alt="Facebook" />
+            <img className='w-6 h-6' src={ln} alt="LinkedIn" />
+          </div>
+        </div>
+        <hr className='w-full border-[#919399] mb-4' />
+        <div className="flex flex-wrap justify-between gap-y-8 text-[#2C2D2E] font-montserrat mb-6">
+          <div className="min-w-30 flex-1">
+            <h3 className="font-bold text-xl mb-2">{t('footer-mahsulot')}</h3>
+            <ul className="space-y-1">
+              <li><a href="#">{t('p-laminattub')}</a></li>
+              <li><a href="#">{t('p-ekstruziontub')}</a></li>
+              <li><a href="#">{t('p-drugaiaupakovka')}</a></li>
+            </ul>
+          </div>
+          <div className="min-w-30 flex-1">
+            <h3 className="font-bold text-xl mb-2">{t('footer-kompaniya')}</h3>
+            <ul className="space-y-1">
+              <li><a href="#">{t('p-haqimizda')}</a></li>
+              <li><a href="#">{t('p-jamoamiz')}</a></li>
+              <li><a href="#">{t('p-sertifikat')}</a></li>
+            </ul>
+          </div>
+          <div className="min-w-30 flex-1">
+            <h3 className="font-bold text-xl mb-2">{t('footer-bolimi')}</h3>
+            <ul className="space-y-1">
+              <li><a href="#">{t('p-kontakt')}</a></li>
+              <li><a href="#">{t('p-yangiliklar')}</a></li>
+              <li><a href="#">{t('p-boshorinlar')}</a></li>
+            </ul>
+          </div>
+          <div className="min-w-30 flex-1">
+            <div className="mb-2 text-[#EF7C00] font-semibold">{t('belorus')}</div>
+            <div className="text-sm leading-5 mb-3">
+              +375 (17) 270 53 77<br />
+              +375 (17) 270 53 78
             </div>
-        </footer>
-    );
+            <div className="mb-2 text-[#EF7C00] font-semibold">{t('moskva')}</div>
+            <div className="text-sm leading-5">
+              +7 (495) 280 73 44<br />
+              +7 (495) 280 73 44
+            </div>
+          </div>
+          <div className="min-w-30 flex-1">
+            <div className="mb-2 text-[#EF7C00] font-semibold">{t('evropa')}</div>
+            <div className="text-sm leading-5 mb-3">
+              +48 73 1111 044
+            </div>
+            <div className="mb-2 text-[#EF7C00] font-semibold">{t('ekaterinburg')}</div>
+            <div className="text-sm leading-5">
+              +7 (343) 346 82 06
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-[#919399] font-montserrat mt-6 gap-2">
+          <div>
+            {t('manzil')}
+          </div>
+          <button onClick={scrollToTop} className="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md border border-[#EF7C00] text-[#EF7C00] text-xl mt-2 md:mt-0 hover:bg-[#EF7C00] hover:text-white transition">
+            <span style={{ display: 'inline-block'}}>^</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+  )
 }
+
+export default Footer
